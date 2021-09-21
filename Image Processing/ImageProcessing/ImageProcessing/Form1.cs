@@ -100,12 +100,68 @@ namespace ImageProcessing
 
             //Plot histogram data
             for (int i = 0; i < 256; i++)
-                for (int j = 0; j < histData[i]/5; j++)
+                for (int j = 0; j < Math.Min(histData[i]/5, 800); j++)
                 {
-                    myData.SetPixel(i, j, Color.Black);
+                    myData.SetPixel(i, 799-j, Color.Black);
                 }
 
             display2.Image = myData;
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+        }
+
+        private void Sepia_Click(object sender, EventArgs e)
+        {
+            resultImage = new Bitmap(loadImage.Width, loadImage.Height);
+
+            for (int x = 0; x < loadImage.Width; x++)
+                for (int y = 0; y < loadImage.Height; y++)
+                {
+                    Color pixel = loadImage.GetPixel(x, y);
+                    int tRed = (int)(0.393 * pixel.R + 0.769 * pixel.G + 0.189 * pixel.B);
+                    int tGreen = (int)(0.349 * pixel.R + 0.686 * pixel.G + 0.168 * pixel.B);
+                    int tBlue = (int)(0.272 * pixel.R + 0.534 * pixel.G + 0.131 * pixel.B);
+
+                    int r = 0;
+                    int g = 0;
+                    int b = 0;
+
+                    //set new RGB value
+                    if (tRed > 255)
+                    {
+                        r = 255;
+                    }
+                    else
+                    {
+                        r = tRed;
+                    }
+
+                    if (tGreen > 255)
+                    {
+                        g = 255;
+                    }
+                    else
+                    {
+                        g = tGreen;
+                    }
+
+                    if (tBlue > 255)
+                    {
+                        b = 255;
+                    }
+                    else
+                    {
+                        b = tBlue;
+                    }
+
+                    //set the new RGB value in image pixel
+                    resultImage.SetPixel(x, y, Color.FromArgb(r, g, b));
+                }
+
+            display2.Image = resultImage;
         }
 
         private void copy_Click(object sender, EventArgs e)

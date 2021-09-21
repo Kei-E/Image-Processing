@@ -39,6 +39,7 @@ namespace ImageProcessing
             this.Invert = new System.Windows.Forms.Button();
             this.histogram = new System.Windows.Forms.Button();
             this.Sepia = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.display1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.display2)).BeginInit();
             this.SuspendLayout();
@@ -79,6 +80,7 @@ namespace ImageProcessing
             this.save.TabIndex = 4;
             this.save.Text = "SAVE IMAGE";
             this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
             // openFileDialog1
             // 
@@ -133,6 +135,7 @@ namespace ImageProcessing
             this.Sepia.TabIndex = 9;
             this.Sepia.Text = "SEPIA IMAGE";
             this.Sepia.UseVisualStyleBackColor = true;
+            this.Sepia.Click += new System.EventHandler(this.Sepia_Click);
             // 
             // Form1
             // 
@@ -168,6 +171,7 @@ namespace ImageProcessing
         private System.Windows.Forms.Button Invert;
         private System.Windows.Forms.Button histogram;
         private System.Windows.Forms.Button Sepia;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
