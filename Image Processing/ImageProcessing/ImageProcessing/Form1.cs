@@ -164,6 +164,11 @@ namespace ImageProcessing
             display2.Image = resultImage;
         }
 
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            resultImage.Save(saveFileDialog1.FileName);
+        }
+
         private void copy_Click(object sender, EventArgs e)
         {
             resultImage = new Bitmap(loadImage.Width, loadImage.Height);
