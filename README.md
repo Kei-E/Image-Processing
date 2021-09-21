@@ -1,2 +1,4 @@
-# Image-Processing-using-C-
-CS345
+# Image-Processing-using-C#
+CS345 
+
+
