@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebCamLib;
+using ImageProcess2;
 
 namespace ImageProcessing
 {
     public partial class Form1 : Form
     {
         Bitmap loadImage, resultImage;
+        Device[] myDevices;
 
         public Form1()
         {
@@ -167,6 +170,78 @@ namespace ImageProcessing
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             resultImage.Save(saveFileDialog1.FileName);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            myDevices = DeviceManager.GetAllDevices();
+        }
+
+        private void OnCam_Click(object sender, EventArgs e)
+        {
+            myDevices[0].ShowWindow(display1);  //First Device Listed will show
+        }
+
+        private void OffCam_Click(object sender, EventArgs e)
+        {
+            myDevices[0].Stop();    //First Device Listed will stop
+        }
+
+        private void greyscale_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            IDataObject data;
+            Image bmap;
+            myDevices[0].Sendmessage();
+            data = Clipboard.GetDataObject();
+            bmap = (Image)(data.GetData("System.Drawing.Bitmap", true));
+            Bitmap b = new Bitmap(bmap);
+
+            resultImage = new Bitmap(b.Width, b.Height);
+
+            //Explore all pixel
+            for (int i = 0; i < b.Width; i++)
+                for (int j = 0; j < b.Height; j++)
+                {
+                    Color pixel = b.GetPixel(i, j);
+                    int grey = (pixel.R + pixel.R + pixel.B) / 3;
+
+                    resultImage.SetPixel(i, j, Color.FromArgb(grey, grey, grey));
+                }
+
+            display2.Image = resultImage;
+        }
+
+        private void OffGreyscale_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            IDataObject data;
+            Image bmap;
+            myDevices[0].Sendmessage();
+            data = Clipboard.GetDataObject();
+            bmap = (Image)(data.GetData("System.Drawing.Bitmap", true));
+            Bitmap b = new Bitmap(bmap);
+            BitmapFilter.Sphere(b, false);  //Bitmap is controlled by the pointer
+
+            display2.Image = b;
+        }
+
+        private void POffGrey_Click(object sender, EventArgs e)
+        {
+            timer2.Enabled = false;
+        }
+
+        private void POnGrey_Click(object sender, EventArgs e)
+        {
+            timer2.Enabled = true;
         }
 
         private void copy_Click(object sender, EventArgs e)

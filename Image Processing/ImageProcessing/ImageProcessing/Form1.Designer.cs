@@ -29,6 +29,7 @@ namespace ImageProcessing
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.display1 = new System.Windows.Forms.PictureBox();
             this.display2 = new System.Windows.Forms.PictureBox();
             this.load = new System.Windows.Forms.Button();
@@ -40,6 +41,14 @@ namespace ImageProcessing
             this.histogram = new System.Windows.Forms.Button();
             this.Sepia = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.OnCam = new System.Windows.Forms.Button();
+            this.OffCam = new System.Windows.Forms.Button();
+            this.OnGreyscale = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.OffGreyscale = new System.Windows.Forms.Button();
+            this.POffGrey = new System.Windows.Forms.Button();
+            this.POnGrey = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.display1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.display2)).BeginInit();
             this.SuspendLayout();
@@ -141,11 +150,87 @@ namespace ImageProcessing
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
+            // OnCam
+            // 
+            this.OnCam.Location = new System.Drawing.Point(364, 386);
+            this.OnCam.Name = "OnCam";
+            this.OnCam.Size = new System.Drawing.Size(65, 52);
+            this.OnCam.TabIndex = 10;
+            this.OnCam.Text = "TURN ON CAMERA";
+            this.OnCam.UseVisualStyleBackColor = true;
+            this.OnCam.Click += new System.EventHandler(this.OnCam_Click);
+            // 
+            // OffCam
+            // 
+            this.OffCam.Location = new System.Drawing.Point(364, 444);
+            this.OffCam.Name = "OffCam";
+            this.OffCam.Size = new System.Drawing.Size(65, 52);
+            this.OffCam.TabIndex = 11;
+            this.OffCam.Text = "TURN OFF CAMERA";
+            this.OffCam.UseVisualStyleBackColor = true;
+            this.OffCam.Click += new System.EventHandler(this.OffCam_Click);
+            // 
+            // OnGreyscale
+            // 
+            this.OnGreyscale.Location = new System.Drawing.Point(42, 386);
+            this.OnGreyscale.Name = "OnGreyscale";
+            this.OnGreyscale.Size = new System.Drawing.Size(316, 23);
+            this.OnGreyscale.TabIndex = 12;
+            this.OnGreyscale.Text = "GREYSCALE ON";
+            this.OnGreyscale.UseVisualStyleBackColor = true;
+            this.OnGreyscale.Click += new System.EventHandler(this.greyscale_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // OffGreyscale
+            // 
+            this.OffGreyscale.Location = new System.Drawing.Point(435, 386);
+            this.OffGreyscale.Name = "OffGreyscale";
+            this.OffGreyscale.Size = new System.Drawing.Size(316, 23);
+            this.OffGreyscale.TabIndex = 13;
+            this.OffGreyscale.Text = "GREYSCALE OFF";
+            this.OffGreyscale.UseVisualStyleBackColor = true;
+            this.OffGreyscale.Click += new System.EventHandler(this.OffGreyscale_Click);
+            // 
+            // POffGrey
+            // 
+            this.POffGrey.Location = new System.Drawing.Point(435, 415);
+            this.POffGrey.Name = "POffGrey";
+            this.POffGrey.Size = new System.Drawing.Size(316, 23);
+            this.POffGrey.TabIndex = 15;
+            this.POffGrey.Text = "POINTER GREYSCALE OFF";
+            this.POffGrey.UseVisualStyleBackColor = true;
+            this.POffGrey.Click += new System.EventHandler(this.POffGrey_Click);
+            // 
+            // POnGrey
+            // 
+            this.POnGrey.Location = new System.Drawing.Point(42, 415);
+            this.POnGrey.Name = "POnGrey";
+            this.POnGrey.Size = new System.Drawing.Size(316, 23);
+            this.POnGrey.TabIndex = 14;
+            this.POnGrey.Text = "POINTER GREYSCALE ON";
+            this.POnGrey.UseVisualStyleBackColor = true;
+            this.POnGrey.Click += new System.EventHandler(this.POnGrey_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 10;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(791, 405);
+            this.ClientSize = new System.Drawing.Size(801, 526);
+            this.Controls.Add(this.POffGrey);
+            this.Controls.Add(this.POnGrey);
+            this.Controls.Add(this.OffGreyscale);
+            this.Controls.Add(this.OnGreyscale);
+            this.Controls.Add(this.OffCam);
+            this.Controls.Add(this.OnCam);
             this.Controls.Add(this.Sepia);
             this.Controls.Add(this.histogram);
             this.Controls.Add(this.Invert);
@@ -157,6 +242,7 @@ namespace ImageProcessing
             this.Controls.Add(this.display1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.display1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.display2)).EndInit();
             this.ResumeLayout(false);
@@ -176,6 +262,14 @@ namespace ImageProcessing
         private System.Windows.Forms.Button histogram;
         private System.Windows.Forms.Button Sepia;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button OnCam;
+        private System.Windows.Forms.Button OffCam;
+        private System.Windows.Forms.Button OnGreyscale;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button OffGreyscale;
+        private System.Windows.Forms.Button POffGrey;
+        private System.Windows.Forms.Button POnGrey;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
