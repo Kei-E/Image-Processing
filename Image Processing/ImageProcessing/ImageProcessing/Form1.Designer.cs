@@ -49,33 +49,38 @@ namespace ImageProcessing
             this.POffGrey = new System.Windows.Forms.Button();
             this.POnGrey = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.display3 = new System.Windows.Forms.PictureBox();
+            this.loadBg = new System.Windows.Forms.Button();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.subtract = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.display1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.display2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.display3)).BeginInit();
             this.SuspendLayout();
             // 
             // display1
             // 
             this.display1.Location = new System.Drawing.Point(42, 12);
             this.display1.Name = "display1";
-            this.display1.Size = new System.Drawing.Size(316, 267);
+            this.display1.Size = new System.Drawing.Size(225, 224);
             this.display1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.display1.TabIndex = 1;
             this.display1.TabStop = false;
             // 
             // display2
             // 
-            this.display2.Location = new System.Drawing.Point(435, 13);
+            this.display2.Location = new System.Drawing.Point(273, 12);
             this.display2.Name = "display2";
-            this.display2.Size = new System.Drawing.Size(316, 267);
+            this.display2.Size = new System.Drawing.Size(225, 224);
             this.display2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.display2.TabIndex = 2;
             this.display2.TabStop = false;
             // 
             // load
             // 
-            this.load.Location = new System.Drawing.Point(364, 311);
+            this.load.Location = new System.Drawing.Point(68, 242);
             this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(65, 57);
+            this.load.Size = new System.Drawing.Size(172, 42);
             this.load.TabIndex = 3;
             this.load.Text = "LOAD IMAGE";
             this.load.UseVisualStyleBackColor = true;
@@ -83,9 +88,9 @@ namespace ImageProcessing
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(435, 357);
+            this.save.Location = new System.Drawing.Point(735, 159);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(316, 23);
+            this.save.Size = new System.Drawing.Size(102, 23);
             this.save.TabIndex = 4;
             this.save.Text = "SAVE IMAGE";
             this.save.UseVisualStyleBackColor = true;
@@ -98,9 +103,9 @@ namespace ImageProcessing
             // 
             // copy
             // 
-            this.copy.Location = new System.Drawing.Point(42, 299);
+            this.copy.Location = new System.Drawing.Point(735, 12);
             this.copy.Name = "copy";
-            this.copy.Size = new System.Drawing.Size(316, 23);
+            this.copy.Size = new System.Drawing.Size(102, 23);
             this.copy.TabIndex = 5;
             this.copy.Text = "COPY IMAGE";
             this.copy.UseVisualStyleBackColor = true;
@@ -108,9 +113,9 @@ namespace ImageProcessing
             // 
             // grey
             // 
-            this.grey.Location = new System.Drawing.Point(42, 328);
+            this.grey.Location = new System.Drawing.Point(735, 70);
             this.grey.Name = "grey";
-            this.grey.Size = new System.Drawing.Size(316, 23);
+            this.grey.Size = new System.Drawing.Size(102, 38);
             this.grey.TabIndex = 6;
             this.grey.Text = "GREYSCALE IMAGE";
             this.grey.UseVisualStyleBackColor = true;
@@ -118,9 +123,9 @@ namespace ImageProcessing
             // 
             // Invert
             // 
-            this.Invert.Location = new System.Drawing.Point(42, 357);
+            this.Invert.Location = new System.Drawing.Point(735, 41);
             this.Invert.Name = "Invert";
-            this.Invert.Size = new System.Drawing.Size(316, 23);
+            this.Invert.Size = new System.Drawing.Size(102, 23);
             this.Invert.TabIndex = 7;
             this.Invert.Text = "INVERT IMAGE";
             this.Invert.UseVisualStyleBackColor = true;
@@ -128,9 +133,9 @@ namespace ImageProcessing
             // 
             // histogram
             // 
-            this.histogram.Location = new System.Drawing.Point(435, 299);
+            this.histogram.Location = new System.Drawing.Point(735, 114);
             this.histogram.Name = "histogram";
-            this.histogram.Size = new System.Drawing.Size(316, 23);
+            this.histogram.Size = new System.Drawing.Size(102, 38);
             this.histogram.TabIndex = 8;
             this.histogram.Text = "HISTOGRAM OF IMAGE";
             this.histogram.UseVisualStyleBackColor = true;
@@ -138,9 +143,9 @@ namespace ImageProcessing
             // 
             // Sepia
             // 
-            this.Sepia.Location = new System.Drawing.Point(435, 328);
+            this.Sepia.Location = new System.Drawing.Point(735, 188);
             this.Sepia.Name = "Sepia";
-            this.Sepia.Size = new System.Drawing.Size(316, 23);
+            this.Sepia.Size = new System.Drawing.Size(102, 24);
             this.Sepia.TabIndex = 9;
             this.Sepia.Text = "SEPIA IMAGE";
             this.Sepia.UseVisualStyleBackColor = true;
@@ -152,9 +157,9 @@ namespace ImageProcessing
             // 
             // OnCam
             // 
-            this.OnCam.Location = new System.Drawing.Point(364, 386);
+            this.OnCam.Location = new System.Drawing.Point(42, 314);
             this.OnCam.Name = "OnCam";
-            this.OnCam.Size = new System.Drawing.Size(65, 52);
+            this.OnCam.Size = new System.Drawing.Size(362, 33);
             this.OnCam.TabIndex = 10;
             this.OnCam.Text = "TURN ON CAMERA";
             this.OnCam.UseVisualStyleBackColor = true;
@@ -162,9 +167,9 @@ namespace ImageProcessing
             // 
             // OffCam
             // 
-            this.OffCam.Location = new System.Drawing.Point(364, 444);
+            this.OffCam.Location = new System.Drawing.Point(410, 314);
             this.OffCam.Name = "OffCam";
-            this.OffCam.Size = new System.Drawing.Size(65, 52);
+            this.OffCam.Size = new System.Drawing.Size(319, 33);
             this.OffCam.TabIndex = 11;
             this.OffCam.Text = "TURN OFF CAMERA";
             this.OffCam.UseVisualStyleBackColor = true;
@@ -172,9 +177,9 @@ namespace ImageProcessing
             // 
             // OnGreyscale
             // 
-            this.OnGreyscale.Location = new System.Drawing.Point(42, 386);
+            this.OnGreyscale.Location = new System.Drawing.Point(410, 353);
             this.OnGreyscale.Name = "OnGreyscale";
-            this.OnGreyscale.Size = new System.Drawing.Size(316, 23);
+            this.OnGreyscale.Size = new System.Drawing.Size(152, 35);
             this.OnGreyscale.TabIndex = 12;
             this.OnGreyscale.Text = "GREYSCALE ON";
             this.OnGreyscale.UseVisualStyleBackColor = true;
@@ -187,9 +192,9 @@ namespace ImageProcessing
             // 
             // OffGreyscale
             // 
-            this.OffGreyscale.Location = new System.Drawing.Point(435, 386);
+            this.OffGreyscale.Location = new System.Drawing.Point(578, 353);
             this.OffGreyscale.Name = "OffGreyscale";
-            this.OffGreyscale.Size = new System.Drawing.Size(316, 23);
+            this.OffGreyscale.Size = new System.Drawing.Size(151, 35);
             this.OffGreyscale.TabIndex = 13;
             this.OffGreyscale.Text = "GREYSCALE OFF";
             this.OffGreyscale.UseVisualStyleBackColor = true;
@@ -197,9 +202,9 @@ namespace ImageProcessing
             // 
             // POffGrey
             // 
-            this.POffGrey.Location = new System.Drawing.Point(435, 415);
+            this.POffGrey.Location = new System.Drawing.Point(228, 353);
             this.POffGrey.Name = "POffGrey";
-            this.POffGrey.Size = new System.Drawing.Size(316, 23);
+            this.POffGrey.Size = new System.Drawing.Size(176, 35);
             this.POffGrey.TabIndex = 15;
             this.POffGrey.Text = "POINTER GREYSCALE OFF";
             this.POffGrey.UseVisualStyleBackColor = true;
@@ -207,9 +212,9 @@ namespace ImageProcessing
             // 
             // POnGrey
             // 
-            this.POnGrey.Location = new System.Drawing.Point(42, 415);
+            this.POnGrey.Location = new System.Drawing.Point(42, 353);
             this.POnGrey.Name = "POnGrey";
-            this.POnGrey.Size = new System.Drawing.Size(316, 23);
+            this.POnGrey.Size = new System.Drawing.Size(170, 35);
             this.POnGrey.TabIndex = 14;
             this.POnGrey.Text = "POINTER GREYSCALE ON";
             this.POnGrey.UseVisualStyleBackColor = true;
@@ -220,11 +225,48 @@ namespace ImageProcessing
             this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // display3
+            // 
+            this.display3.Location = new System.Drawing.Point(504, 12);
+            this.display3.Name = "display3";
+            this.display3.Size = new System.Drawing.Size(225, 224);
+            this.display3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.display3.TabIndex = 16;
+            this.display3.TabStop = false;
+            // 
+            // loadBg
+            // 
+            this.loadBg.Location = new System.Drawing.Point(291, 242);
+            this.loadBg.Name = "loadBg";
+            this.loadBg.Size = new System.Drawing.Size(172, 42);
+            this.loadBg.TabIndex = 17;
+            this.loadBg.Text = "Load Background";
+            this.loadBg.UseVisualStyleBackColor = true;
+            this.loadBg.Click += new System.EventHandler(this.loadBg_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog1";
+            this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
+            // 
+            // subtract
+            // 
+            this.subtract.Location = new System.Drawing.Point(533, 243);
+            this.subtract.Name = "subtract";
+            this.subtract.Size = new System.Drawing.Size(172, 41);
+            this.subtract.TabIndex = 18;
+            this.subtract.Text = "Subtract";
+            this.subtract.UseVisualStyleBackColor = true;
+            this.subtract.Click += new System.EventHandler(this.subtract_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 526);
+            this.ClientSize = new System.Drawing.Size(842, 404);
+            this.Controls.Add(this.subtract);
+            this.Controls.Add(this.loadBg);
+            this.Controls.Add(this.display3);
             this.Controls.Add(this.POffGrey);
             this.Controls.Add(this.POnGrey);
             this.Controls.Add(this.OffGreyscale);
@@ -245,6 +287,7 @@ namespace ImageProcessing
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.display1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.display2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.display3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -270,6 +313,10 @@ namespace ImageProcessing
         private System.Windows.Forms.Button POffGrey;
         private System.Windows.Forms.Button POnGrey;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.PictureBox display3;
+        private System.Windows.Forms.Button loadBg;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.Button subtract;
     }
 }
 

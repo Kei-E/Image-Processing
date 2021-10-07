@@ -16,6 +16,7 @@ namespace ImageProcessing
     {
         Bitmap loadImage, resultImage;
         Device[] myDevices;
+        Bitmap imageB, imageA;
 
         public Form1()
         {
@@ -29,8 +30,11 @@ namespace ImageProcessing
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            loadImage = new Bitmap(openFileDialog1.FileName);
-            display1.Image = loadImage;
+            /*loadImage = new Bitmap(openFileDialog1.FileName);
+            display1.Image = loadImage;*/
+
+            imageB = new Bitmap(openFileDialog1.FileName);
+            display1.Image = imageB;
         }
 
         private void grey_Click(object sender, EventArgs e)
@@ -237,6 +241,43 @@ namespace ImageProcessing
         private void POffGrey_Click(object sender, EventArgs e)
         {
             timer2.Enabled = false;
+        }
+
+        private void loadBg_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.ShowDialog();
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+            imageA = new Bitmap(openFileDialog2.FileName);
+            display2.Image = imageA;
+        }
+
+        private void subtract_Click(object sender, EventArgs e)
+        {
+            resultImage = new Bitmap(imageB.Width, imageB.Height);
+
+            Color myGreen = Color.FromArgb(0, 0, 255);
+            int greyGreen = (myGreen.R + myGreen.G + myGreen.B) / 3;
+            int threshold = 50;
+
+            //Explore all pixel
+            for (int i = 0; i < imageB.Width; i++)
+                for (int j = 0; j < imageB.Height; j++)
+                {
+                    Color pixel = imageB.GetPixel(i, j);
+                    Color backPixel = imageA.GetPixel(i, j);
+                    int grey = (pixel.R + pixel.R + pixel.B) / 3;
+                    int subtractValue = Math.Abs(grey - greyGreen);
+
+                    if (subtractValue > threshold)
+                        resultImage.SetPixel(i, j, backPixel);
+                    else
+                        resultImage.SetPixel(i, j, pixel);
+                }
+
+            display3.Image = resultImage;
         }
 
         private void POnGrey_Click(object sender, EventArgs e)
